@@ -15,68 +15,20 @@ const Item = styled(Paper)(({ theme }) => ({
 export default function RowAndColumnSpacing() {
   return (
     <Box sx={{ width: '100%' }}>
-      <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
-        <Grid xs={6}>
-          <Item>身長</Item>
-        </Grid>
-        <Grid xs={6}>
-          <Item>cm</Item>
-        </Grid>
-        <Grid xs={6}>
-          <Item>体重</Item>
-        </Grid>
-        <Grid xs={6}>
-          <Item>kg</Item>
-              </Grid>
-        <Grid xs={6}>
-        <Item>服のサイズ</Item>
-        </Grid>
-        <Grid xs={6}>
-          <Item>号</Item>
-        </Grid>
-        <Grid xs={6}>
-          <Item>靴のサイズ</Item>
-        </Grid>
-        <Grid xs={6}>
-          <Item>cm</Item>
-              </Grid>
-                  <Grid xs={6}>
-        <Item>バスト</Item>
-        </Grid>
-        <Grid xs={6}>
-          <Item>カップ</Item>
-        </Grid>
-        <Grid xs={6}>
-          <Item>バスト・トップ</Item>
-        </Grid>
-        <Grid xs={6}>
-          <Item>cm</Item>
-              </Grid>
-                 <Grid xs={6}>
-          <Item>アンダー</Item>
-              </Grid>
-                  <Grid xs={6}>
-        <Item>cm</Item>
-        </Grid>
-        <Grid xs={6}>
-          <Item>ウエスト</Item>
-        </Grid>
-        <Grid xs={6}>
-          <Item>cm</Item>
-        </Grid>
-        <Grid xs={6}>
-          <Item>ヒップ</Item>
-              </Grid>
-                 <Grid xs={6}>
-          <Item>cm</Item>
-              </Grid>
-                  <Grid xs={6}>
-        <Item>血液型</Item>
-        </Grid>
-        <Grid xs={6}>
-          <Item>型</Item>
-        </Grid>
-      </Grid>
+      <li>
+      身長:<input />cm
+      体重:<input/>kg
+      服のサイズ:<input/>号
+      靴のサイズ:<input/>cm
+      バスト:<input/>カップ
+      バスト・トップ:<input/>cm
+      バスト・アンダー:<input/>cm
+      ウエスト:<input/>cm
+      ヒップ:<input/>cm
+      血液型:<input />型
+      </li>
+      
+      
     </Box>
   );
 }

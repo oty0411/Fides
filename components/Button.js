@@ -1,10 +1,12 @@
+import * as React from 'react';
+import Stack from '@mui/material/Stack';
+import Button from '@mui/material/Button';
 
-
-function Button(){
-
+export default function BasicButtons() {
     return (
-        <Button variant="contained" noLinkStyle href="/">
-            HOME
-        </Button>
-    );
+      
+    <Stack spacing={2} direction="row">
+      <Button variant="contained">HOME</Button>
+    </Stack>
+  );
 }

@@ -1,6 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import App from "./loginApp";
+import App from "../lib/loginApp";
 
 ReactDOM.render(
   <React.StrictMode>

@@ -8,7 +8,7 @@ import Input from '../../src/imputbox'
 import Icon from '../../src/icon'
 import Question from '../../src/Question';
 import BirthdayPicker from '../../src/Birthpicker';
-import Buttons from '../../src/Button';
+import Button from '../../components/Button';
 import Checkboxes from '../../src/check';
 
 
@@ -22,10 +22,9 @@ export default function Home({ }) {
           <Input />
         </Layout>
         <BirthdayPicker/>
-            <Question />
-              <Checkboxes />
-              
-        <Buttons/>
+        <Question />
+        <Checkboxes />
+        <Button></Button>
         <Copyright />
       </Box>
       </Container>

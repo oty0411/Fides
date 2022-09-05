@@ -6,7 +6,7 @@ import Copyright from '../src/Copyright';
 import MakerResponsiveAppBar from '../src/MakerResponsiveAppBar'
 import Checkboxes from '../src/check';
 import Layout from '../components/Layout';
-import { Input } from '@mui/material';
+import { Button, Input } from '@mui/material';
 
 
 
@@ -19,7 +19,7 @@ export default function Home({ }) {
       <Box align='center'> 
        <Input/>
         <Checkboxes /> 
-          　<Layout/>
+        <Layout />
         <Copyright />
       </Box>
       </Container>
