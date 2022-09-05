@@ -32,9 +32,7 @@
     border-radius: 1000px;
 }
 
-.colorInherit {
-    color: inherit;
-}
+
 
 .padding1px {
     padding-top: 1px;
@@ -55,6 +53,6 @@
 }
 
 .boldText {
-    color: black;
+    color: #3d393a;
     font-weight: 550;
 }

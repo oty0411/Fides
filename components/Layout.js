@@ -1,8 +1,6 @@
+import { Link } from "@mui/material";
 import Head from "next/head";
 import styles from "./layout.module.css";
-import utilStyles from "../styles/utils.module.css";
-import Link from "next/link";
-
 
 const name = "NAKAKU";
 export const siteTitle = "AVdatabase";
@@ -11,34 +9,15 @@ function Layout({ children, home }) {
     return (
         <div className={styles.container}>
             <Head>
-                <link rel="icon" href="/favicon.ico"/>
+                <title></title>
+                <link href="/favicon.ico" />
             </Head>
-            <header className={styles.header}>
-                {home ? (
-                <>
-                <img
-                src="/images/profile.png"
-                className={`${utilStyles.borderCircle} ${styles.headerHomeImage}`}
-                />
-                <h1 className={utilStyles.heading2Xl}>{name}</h1>
-                </>
-                ):(
-                        <>
-                            <img
-                src="/images/profile.png"
-                className={`${utilStyles.borderCircle} ${styles}`}
-                />
-                <h1 className={utilStyles.heading2Xl}>{name}</h1>
-                        </>
-                )}
-
-            </header>
+            <header className={styles.header}></header>
             <main>{children}</main>
             {!home && (
-                <Link href="/">HOME</Link>
+             <Link href="/">HOME</Link>
             )}
         </div>
     );
 }
-
 export default Layout;
