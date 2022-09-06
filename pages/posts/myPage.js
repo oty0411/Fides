@@ -9,7 +9,7 @@ import Input from '../../src/imputbox'
 import Icon from '../../src/icon'
 import Question from '../../src/Question';
 import BirthdayPicker from '../../src/Birthpicker';
-import Buttons from '../../src/Button';
+import Buttons from '../../components/Button';
 
 
 

@@ -15,7 +15,7 @@ import Checkboxes from '../../src/check';
 export default function Home({ }) {
   return (
     <Container>
-      <ResponsiveAppBar />
+    <ResponsiveAppBar />
     <Box align='center'>
     <Layout home >  
           <Icon />

@@ -11,7 +11,7 @@ import { Button, Input } from '@mui/material';
 
 
 
-export default function Home({ }) {
+export default function sarch({ }) {
   return (
 
     <Container>

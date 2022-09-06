@@ -1,6 +1,5 @@
 import { Link } from "@mui/material";
 import Head from "next/head";
-import Button from "../components/Button"
 import styles from "./layout.module.css";
 
 const name = "NAKAKU";
@@ -15,7 +14,6 @@ function Layout({ children, home }) {
             </Head>
             <header className={styles.header}></header>
             <main>{children}</main>
-            <Button>HOME</Button>
         </div>
     );
 }

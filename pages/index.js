@@ -1,7 +1,8 @@
-
+import Link from "next/link";
+  
+  
 export default function Home({ }) {
   return (
-    <a href='user/me' >Me</a>
-    
+    <Link href='user/me' >Me</Link> 
   );
 }

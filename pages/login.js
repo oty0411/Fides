@@ -1,10 +1,19 @@
-import React from "react";
-import ReactDOM from "react-dom";
-import App from "../lib/loginApp";
+// import React from "react";
+// import ReactDOM from "react-dom";
+// import App from "../pages/_app";
 
-ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
-  document.getElementById("root")
-);
+// ReactDOM.render(
+//   <React.StrictMode>
+//     <App />
+//   </React.StrictMode>,
+//   document.getElementById("root")
+// );
+import React from 'react'
+
+const Login = () => {
+  return (
+    <div>Login</div>
+  )
+}
+
+export default Login
