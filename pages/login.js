@@ -38,11 +38,6 @@ function LoginApp() {
     if (!values.username) {
       errors.username = "ユーザー名を入力してください。";
     }
-    if (!values.mailAddress) {
-      errors.mailAddress = "メールアドレスを入力してください。";
-    } else if (!regex.test(values.mailAddress)) {
-      errors.mailAddress = "正しいメールアドレスを入力してください";
-    }
     if (!values.password) {
       errors.password = "パスワードを入力してください。";
     } else if (values.password.length < 4) {
@@ -56,7 +51,7 @@ function LoginApp() {
   return (
     <div className="formContainer">
       <form onSubmit={handleSubmit}>
-        <h1>ログインフォーム</h1>
+        <h1>ログイン</h1>
         <hr />
         <div className="uiForm">
           <div className="formField">
@@ -66,17 +61,6 @@ function LoginApp() {
               name="username"
               placeholder="ユーザー名"
               value={formValues.username}
-              onChange={(e) => handleChange(e)}
-            />
-          </div>
-          <p className="errorMsg">{formErros.username}</p>
-          <div className="formField">
-            <label>メールアドレス</label>
-            <input
-              type="text"
-              name="mailAddress"
-              placeholder="メールアドレス"
-              value={formValues.mailAddress}
               onChange={(e) => handleChange(e)}
             />
           </div>
@@ -93,7 +77,7 @@ function LoginApp() {
             />
           </div>
           <p className="errorMsg">{formErros.password}</p>
-          <button className="submitButton">登録</button>
+          <button className="submitButton">ログイン</button>
           {Object.keys(formErros).length === 0 && isSubmit && (
             <div className="msgOk">ログインに成功しました</div>
           )}

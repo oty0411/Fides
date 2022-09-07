@@ -7,6 +7,15 @@ import { CacheProvider } from '@emotion/react';
 import theme from '../src/theme';
 import createEmotionCache from '../src/createEmotionCache';
 import { useEffect, useState } from "react";
+import { SessionProvider } from 'next-auth/react';
+
+// function MyApp({ Component, pageProps: { session, ...pageProps } }) {
+//   return (
+//     <SessionProvider session={session}>
+//       <Component {...pageProps} />
+//     </SessionProvider>
+//   );
+// }
 
 // Client-side cache, shared for the whole session of the user in the browser.
 const clientSideEmotionCache = createEmotionCache();
