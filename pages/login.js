@@ -20,10 +20,6 @@ function LoginApp() {
     setFormErrors(validate(formValues));
     setIsSubmit(true);
     
-    // ログイン認証
-    const apiContext= {
-      apiRootUrl: process.env.SELF_API_URL || 'http://localhost:3000/api',
-    }
     // フォーム入力データをAPI引数の形へ成型
     const data = { Name: e.username, Password: e.password };
     // ログイン
@@ -32,6 +28,10 @@ function LoginApp() {
 
   // ログイン
   const login = (loginInfo) => {
+
+     const apiContext= {
+      apiRootUrl: process.env.SELF_API_URL || 'http://localhost:3000/api',
+    }
     //console.log(loginInfo);
 		Api.Login(apiContext, loginInfo)
 			.then(result => {
