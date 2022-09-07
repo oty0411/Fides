@@ -1,0 +1,61 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// MySQLの設定例
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+  //referentialIntegrity = "prisma"
+}
+
+generator client {
+  provider        = "prisma-client-js"
+  previewFeatures = ["referentialIntegrity"]
+}
+
+// ユーザー管理テーブル
+model User {
+  id             Int             @id @default(autoincrement()) // ユーザID
+  name           String          @unique @db.VarChar(32) // 名前
+  password       String          @db.VarChar(32) // パスワード
+  open           Int // 公開 or 非公開 
+  type           Int // ユーザータイプ 女優 or メーカー
+  is_admin       Int // 管理者
+  is_deleted     Int // ユーザー削除状態
+  created_at     DateTime        @default(dbgenerated("NOW()")) @db.Timestamp(0) // 登録日
+  updated_at     DateTime        @default(dbgenerated("NOW() ON UPDATE CURRENT_TIMESTAMP")) @db.Timestamp(0) // 更新日
+  profile        ActorProfile?
+  playCondition1 PlayCondition1?
+}
+
+// 女優プロフィールテーブル
+model ActorProfile {
+  id           Int      @id @default(autoincrement())
+  user         User     @relation(fields: [userId], references: [id])
+  userId       Int      @unique // ユーザID
+  actress_name String   @db.VarChar(128) // 女優名
+  real_name    String   @db.VarChar(128) // 本名
+  birthday     DateTime // 誕生日・・・2002/4/1
+  blood_type   Int // 血液型・・例:AB
+  height       Int // 身長(単位:cm)
+  weight       Int // 体重(単位:kg)
+  clothes_size Int // 服サイズ(単位:号)・・例:XS
+  shoes_size   Int // 靴サイズ(単位:cm)
+  breast_size  Int // バストサイズ (単位:カップ)
+  breast_top   Int // バストトップサイズ(単位:cm)
+  breast_under Int // バストアンダーサイズ(単位:cm)
+  waist_size   Int // ウエストサイズ(単位:cm)
+  hip_size     Int // ヒップサイズ(単位:cm)
+}
+
+// プレイ条件1テーブル
+model PlayCondition1 {
+  id        Int  @id @default(autoincrement())
+  user      User @relation(fields: [userId], references: [id])
+  userId    Int  @unique // ユーザID
+  honban    Int // 本番
+  gomunashi Int // ゴム無し
+  nakadashi Int // 中出し
+  ferachio  Int // フェラチオ
+  iramachio Int // イラマチオ
+}

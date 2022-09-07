@@ -1,4 +1,6 @@
 import { useEffect, useState } from "react";
+import * as UserTypes from "../types/userTypes"
+import * as Api from "../utils/api"
 
 function LoginApp() {
   const initialValues = { username: "", password: "" };
@@ -17,7 +19,33 @@ function LoginApp() {
     e.preventDefault();
     setFormErrors(validate(formValues));
     setIsSubmit(true);
+    
+    // ログイン認証
+    const apiContext= {
+      apiRootUrl: process.env.SELF_API_URL || 'http://localhost:3000/api',
+    }
+    // フォーム入力データをAPI引数の形へ成型
+    const data = { Name: e.username, Password: e.password };
+    // ログイン
+    login(data);
   };
+
+  // ログイン
+  const login = (loginInfo) => {
+    //console.log(loginInfo);
+		Api.Login(apiContext, loginInfo)
+			.then(result => {
+        console.log(result);
+        // TODO: ログイン認証結果に従い画面遷移先の切替
+        if (result.result.Code == UserTypes.AppErrorCode.Success) {
+          // 認証PASS
+          console.log("========Auth Pass=======");
+        } else {
+          // 認証NG
+          console.log("========Auth Fail=======");
+        }
+			})
+  }
 
   useEffect(() => {
     console.log(formErros);
