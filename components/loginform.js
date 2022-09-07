@@ -1,6 +1,6 @@
 import React from 'react';
 import { useForm } from 'react-hook-form';
-import Button from '../components/Button';
+import Button from './Button';
 
 
  User = {
@@ -62,7 +62,7 @@ const CreateAccount = () => {
                         name="plofile"
                     />
                 </div>
-         <Button></Button>
+         <Button>送信</Button>
                 </form>
         </div>
 

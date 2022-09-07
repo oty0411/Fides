@@ -97,7 +97,7 @@ function App() {
               onChange={(e) => handleChange(e)}
             />
           </div>
-          <p className="errorMsg">{formErros.username}</p>
+          {/* <p className="errorMsg">{formErros.username}</p>
           <div className="formField">
             <label>メールアドレス</label>
             <input
@@ -107,7 +107,7 @@ function App() {
               value={formValues.mailAddress}
               onChange={(e) => handleChange(e)}
             />
-          </div>
+          </div> */}
           <p className="errorMsg">{formErros.mailAddress}</p>
 
           <div className="formField">
