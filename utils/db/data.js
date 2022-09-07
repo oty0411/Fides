@@ -1,0 +1,30 @@
+/**
+ * 女優データアイテム文字列
+ */
+export const ActorDataItemName = {
+  Id:                 "id",
+  Name:               "name",
+  Password:           "password",
+  Open:               "open",
+  Type:               "type",
+  IsAdmin:            "is_admin",
+  IsDeleted:          "is_deleted",
+  ActressName:        "actress_name",
+  RealName:           "real_name",
+  Birthday:           "birthday",
+  BloodType:          "blood_type",
+  Height:             "height",
+  Weight:             "weight",
+  ClothesSize:        "clothes_size",
+  ShoesSize:          "shoes_size",
+  BreastSize:         "breast_size",
+  BreastTopSize:      "breast_top",
+  BreastUnderSize:    "breast_under",
+  WaistSize:          "waist_size",
+  HipSize:            "hip_size",
+  Honban:             "honban",
+  Gomunashi:          "gomunashi",
+  Nakadashi:          "nakadashi",
+  Ferachio:           "ferachio",
+  Iramachio:          "iramachio",
+}
