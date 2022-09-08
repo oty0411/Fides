@@ -29,8 +29,8 @@ function LoginApp() {
   // ログイン
   const login = (loginInfo) => {
 
-     const apiContext= {
-      apiRootUrl: process.env.SELF_API_URL || 'http://localhost:3000/api',
+    const apiContext/*ApiContext*/ = {
+      apiRootUrl: process.env.NEXT_PUBLIC_SELF_API_URL,
     }
     //console.log(loginInfo);
 		Api.Login(apiContext, loginInfo)

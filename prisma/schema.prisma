@@ -3,8 +3,9 @@
 
 // MySQLの設定例
 datasource db {
-  provider = "mysql"
-  url      = env("DATABASE_URL")
+  provider          = "postgresql" //"mysql"
+  url               = env("NEXT_PUBLIC_DATABASE_URL")
+  shadowDatabaseUrl = env("NEXT_PUBLIC_SHADOW_DATABASE_URL")
   //referentialIntegrity = "prisma"
 }
 
@@ -23,7 +24,7 @@ model User {
   is_admin       Int // 管理者
   is_deleted     Int // ユーザー削除状態
   created_at     DateTime        @default(dbgenerated("NOW()")) @db.Timestamp(0) // 登録日
-  updated_at     DateTime        @default(dbgenerated("NOW() ON UPDATE CURRENT_TIMESTAMP")) @db.Timestamp(0) // 更新日
+  updated_at     DateTime        @default(dbgenerated("NOW()")) @db.Timestamp(0) // 更新日
   profile        ActorProfile?
   playCondition1 PlayCondition1?
 }

@@ -10,7 +10,7 @@ export default function App() {
 	const onSubmit/*SubmitHandler<{id: number}>*/ = (data) => {
 		//console.log(data);
     const apiContext/*ApiContext*/ = {
-      apiRootUrl: process.env.SELF_API_URL || 'http://localhost:3000/api',
+      apiRootUrl: process.env.NEXT_PUBLIC_SELF_API_URL,
     }
 		Api.GetActorProfile(apiContext, data.id)
 			.then(result => {

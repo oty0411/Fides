@@ -80,8 +80,8 @@ export default function Me() {
   
   // プロフィール更新
   const updateProfile = (postData) => {
-     const apiContext= {
-      apiRootUrl: process.env.SELF_API_URL || 'http://localhost:3000/api',
+    const apiContext/*ApiContext*/ = {
+      apiRootUrl: process.env.NEXT_PUBLIC_SELF_API_URL,
     }
     //console.log(postData);
     // TODO:ユーザIDを取得する必要がある

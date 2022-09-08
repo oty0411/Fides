@@ -9,7 +9,7 @@ export default function App() {
 	const handleClickEvent = () => {
 		//console.log(data);
     const apiContext/*ApiContext*/ = {
-      apiRootUrl: process.env.SELF_API_URL || 'http://localhost:3000/api',
+      apiRootUrl: process.env.NEXT_PUBLIC_SELF_API_URL,
 		}
 		const conditon = createSearchCondition();
 		Api.SearchActors(apiContext, conditon)
