@@ -2,13 +2,15 @@ import { useForm, SubmitHandler } from 'react-hook-form'
 import * as UserTypes from '../../types/userTypes';
 import * as Api from '../../utils/api'
 import Link from 'next/link'
+import getConfig from "next/config"
 
 export default function RegistrarionForm(){
 	const { register, handleSubmit, formState: { errors }, } = useForm();
 	const onSubmit = (data) => {
 		//console.log(data)
+		const { serverRuntimeConfig, publicRuntimeConfig } = getConfig();
     const apiContext = {
-      apiRootUrl: process.env.NEXT_PUBLIC_SELF_API_URL,
+      apiRootUrl: publicRuntimeConfig.NEXT_PUBLIC_SELF_API_URL,
 		}
 		Api.RegistrationUser(apiContext, data)
 			.then(result => {

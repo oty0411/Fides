@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import * as UserTypes from "../types/userTypes"
 import * as Api from "../utils/api"
+import getConfig from "next/config"
 
 function LoginApp() {
   const initialValues = { username: "", password: "" };
@@ -29,9 +30,10 @@ function LoginApp() {
   // ログイン
   const login = (loginInfo) => {
 
-    const apiContext/*ApiContext*/ = {
-      apiRootUrl: process.env.NEXT_PUBLIC_SELF_API_URL,
-    }
+    const { serverRuntimeConfig, publicRuntimeConfig } = getConfig();
+    const apiContext = {
+      apiRootUrl: publicRuntimeConfig.NEXT_PUBLIC_SELF_API_URL,
+		}
     //console.log(loginInfo);
 		Api.Login(apiContext, loginInfo)
 			.then(result => {

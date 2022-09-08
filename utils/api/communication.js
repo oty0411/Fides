@@ -44,6 +44,9 @@ export const ApiRequestFetcher = async (
       },
     }
   }
+  console.log("address start");
+  console.log(resource);
+  console.log("address end");
   const res = await fetch(resource, init)
 
   if (!res.ok) {

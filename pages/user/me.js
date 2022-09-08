@@ -9,8 +9,7 @@ import * as UserTypes from '../../types/userTypes';
 import * as Api from '../../utils/api'
 import Copyright from '../../src/Copyright';
 import CheckBoxList from '../../src/CheckBoxList';
-
-
+import getConfig from "next/config"
 
 export default function Me() {
   const handleUploadClick = async (e) => {
@@ -81,9 +80,10 @@ export default function Me() {
   
   // プロフィール更新
   const updateProfile = (postData) => {
-    const apiContext/*ApiContext*/ = {
-      apiRootUrl: process.env.NEXT_PUBLIC_SELF_API_URL,
-    }
+    const { serverRuntimeConfig, publicRuntimeConfig } = getConfig();
+    const apiContext = {
+      apiRootUrl: publicRuntimeConfig.NEXT_PUBLIC_SELF_API_URL,
+		}
     //console.log(postData);
     // TODO:ユーザIDを取得する必要がある
 		Api.UpdateActorProfile(apiContext, { userId: 1, userData: postData })

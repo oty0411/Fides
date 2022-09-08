@@ -31,3 +31,11 @@ yarn-error.log*
 # vercel
 .vercel
 .env
+next.config.js.bak
+package.json.bak
+pages/test/getActorListForm.jsx.bak
+pages/test/getUserDataForm.jsx.bak
+pages/test/loginForm.jsx.bak
+pages/test/registrationUserForm.jsx.bak
+pages/test/searchActorsForm.jsx.bak
+pages/test/updateUserDataForm.jsx.bak
