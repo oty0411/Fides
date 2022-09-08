@@ -1,8 +1,12 @@
 import Link from "next/link";
-  
+import CheckBoxList from "../src/CheckBoxList";
+
   
 export default function Home({ }) {
   return (
-    <Link href='user/me' >Me</Link> 
+    <>
+      <CheckBoxList/>
+      <Link href='user/me' >Me</Link> 
+      </>
   );
 }

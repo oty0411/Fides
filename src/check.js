@@ -70,7 +70,7 @@ const CheckBoxList = () => {
         {checkLists.map((item, index) => {
           index = index + 1
           return (
-            <label htmlFor={`id_${index}`} key={`key_${index}`}>
+            <label htmlFor={`_${index}`} key={`key_${index}`}>
               <CheckBox
                 id={`id_${index}`}
                 value={item}
@@ -158,4 +158,4 @@ const CheckBoxList = () => {
 }
 
 
-export default CheckBoxList
+export default CheckBox

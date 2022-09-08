@@ -13,6 +13,9 @@ import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import AdbIcon from '@mui/icons-material/Adb';
 
+
+
+
 const pages = ['探す','マイページ'];
 const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
 
@@ -36,7 +39,9 @@ const ResponsiveAppBar = () => {
   };
 
   return (
-    <AppBar position="static">
+    <AppBar
+      position="static"
+    color="test">
       <Container maxWidth="xl">
         <Toolbar disableGutters>
           <Typography

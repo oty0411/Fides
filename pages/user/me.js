@@ -4,11 +4,11 @@ import FormControl from '@mui/material/FormControl';
 import InputLabel from '@mui/material/InputLabel';
 import OutlinedInput from '@mui/material/OutlinedInput';
 import ResponsiveAppBar from '../../src/ResponsiveAppBar';
-import { Grid } from '@mui/material';
-import BiethdayPickers from '../../src/Birthpicker';
 import { useForm } from 'react-hook-form';
 import * as UserTypes from '../../types/userTypes';
 import * as Api from '../../utils/api'
+import Copyright from '../../src/Copyright';
+
 
 
 export default function Me() {
@@ -116,7 +116,7 @@ export default function Me() {
         <div>
       <h1>プロフィール</h1>
       <form onSubmit={handleSubmit(submit)}>
-        <div>
+        <div style={{marginBottom: "20px"}}>
           <label htmlFor="ActressName">女優名</label>
           <input
             autoComplete="off"
@@ -128,7 +128,7 @@ export default function Me() {
             {errors.ActressName && <div>女優名を入力してください</div>}
         </div>
 
-        <div>
+        <div style={{ marginBottom: "20px" }}>
           <label htmlFor="RealName">本名</label>
           <input
             autoComplete="off"
@@ -140,7 +140,7 @@ export default function Me() {
           {errors.RealName && <div>本名を入力してください</div>}  
         </div>
 
-        <div>
+        <div style={{ marginBottom: "20px" }}>
           <label htmlFor="Height">身長</label>
           <input
             autoComplete="off"
@@ -164,7 +164,7 @@ export default function Me() {
           {errors.Weight && <div>体重を入力してください</div>}  
         </div>
 
-        <div>
+        <div style={{ marginBottom: "20px" }}>
           <label htmlFor="ClothesSize">服のサイズ</label>
           <select {...register('ClothesSize', { required: true })}>
             <option value="">選択...</option>
@@ -185,7 +185,7 @@ export default function Me() {
           {errors.ClothesSize && <div>服のサイズを入力してください</div>}    
         </div>
 
-        <div>
+        <div style={{ marginBottom: "20px" }}>
           <label htmlFor="ShoesSize">靴のサイズ</label>
           <input
             autoComplete="off"
@@ -197,7 +197,7 @@ export default function Me() {
           {errors.ShoesSize && <div>靴のサイズを入力してください</div>}   
         </div>
 
-        <div>
+        <div style={{ marginBottom: "20px" }}>
           <label htmlFor="BreastSize">バストサイズ</label>
           <select {...register('BreastSize', { required: true })}>
             <option value="">選択...</option>
@@ -219,7 +219,7 @@ export default function Me() {
           {errors.BreastSize && <div>バストサイズを入力してください</div>}   
         </div>
 
-        <div>
+        <div style={{ marginBottom: "20px" }}>
           <label htmlFor="BreastTopSize">バストトップ</label>
           <input
             autoComplete="off"
@@ -231,7 +231,7 @@ export default function Me() {
           {errors.BreastTopSize && <div>バストトップサイズを入力してください</div>}   
         </div>
 
-        <div>
+        <div style={{ marginBottom: "20px" }}>
           <label htmlFor="BreastUnderSize">バストアンダー</label>
           <input
             autoComplete="off"
@@ -243,7 +243,7 @@ export default function Me() {
           {errors.BreastUnderSize && <div>バストアンダーサイズを入力してください</div>} 
         </div>
 
-        <div>
+        <div style={{ marginBottom: "20px" }}>
           <label htmlFor="WaistSize">ウエスト</label>
           <input
             autoComplete="off"
@@ -255,7 +255,7 @@ export default function Me() {
           {errors.WaistSize && <div>ウェストサイズを入力してください</div>}   
         </div>
 
-        <div>
+        <div style={{ marginBottom: "20px" }}>
           <label htmlFor="HipSize">ヒップサイズ</label>
           <input
             autoComplete="off"
@@ -277,7 +277,7 @@ export default function Me() {
             id="blood"
           />
         </div> */}
-        <div>
+        <div style={{ marginBottom: "20px" }}>
           <label htmlFor="BloodType">血液型</label>
           <select {...register('BloodType', { required: true })}>
             <option value="">選択...</option>
@@ -288,9 +288,12 @@ export default function Me() {
 				</select>
           {errors.BloodType && <div>血液型を入力してください</div>}   
         </div>  
-        <button>プロフィール作成</button>
-      </form>
-    </div>
+          <button>プロフィール作成</button>
+   
+        </form>
+        
+      </div>
+      <Copyright/>
     </>
     )
   }
