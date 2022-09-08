@@ -73,7 +73,9 @@ export class DBAccessor{
 			console.log("Auth pass.");
 		}
 		const userData = new UserTypes.UserData();
-		userData.SetData(matchUser);
+		if (user.Name !== undefined && user.Password !== undefined && user.Name !== "" && user.Password !== "") {
+			userData.SetData(matchUser);
+		}
 		return {
 			result: result,
 			pass: pass,

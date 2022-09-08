@@ -7,7 +7,7 @@ export default async function handler(
   res/*NextApiResponse<{ result: Api.Result, userData: UserTypes.UserData }>*/,
 ) {
 	// console.log("recieve request!");
-	// console.log(req.body);
+	//console.log(req.body);
 	DBAccessor.AuthUser(req.body)
 		.then(returnCode => {
 			//console.log("RetCode:" + returnCode);

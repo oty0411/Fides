@@ -2,12 +2,15 @@ import { useEffect, useState } from "react";
 import * as UserTypes from "../types/userTypes"
 import * as Api from "../utils/api"
 import getConfig from "next/config"
+import { useRouter } from "next/router";
 
 function LoginApp() {
   const initialValues = { username: "", password: "" };
   const [formValues, setFormValues] = useState(initialValues);
   const [formErros, setFormErrors] = useState({});
   const [isSubmit, setIsSubmit] = useState(false);
+  const [loginFail, setloginFail] = useState(false);
+  const router = useRouter();
 
   const handleChange = (e) => {
     // console.log(e.target.name);
@@ -22,7 +25,7 @@ function LoginApp() {
     setIsSubmit(true);
     
     // フォーム入力データをAPI引数の形へ成型
-    const data = { Name: e.username, Password: e.password };
+    const data = { Name: formValues.username, Password: formValues.password };
     // ログイン
     login(data);
   };
@@ -38,22 +41,27 @@ function LoginApp() {
 		Api.Login(apiContext, loginInfo)
 			.then(result => {
         console.log(result);
-        // TODO: ログイン認証結果に従い画面遷移先の切替
         if (result.result.Code == UserTypes.AppErrorCode.Success) {
           // 認証PASS
           console.log("========Auth Pass=======");
+          if (result.userData.Type === UserTypes.UserType.Actor) {
+            router.replace("/user/me");
+          } else {
+            router.replace("/search");
+          }
         } else {
           // 認証NG
+          setloginFail(true);
           console.log("========Auth Fail=======");
         }
 			})
   }
 
   useEffect(() => {
-    console.log(formErros);
+    //console.log(formErros);
     //エラーなしでかつ送信されているなら。
     if (Object.keys(formErros).length === 0 && isSubmit) {
-      console.log(formValues);
+      //console.log(formValues);
     } else {
     }
   }, [formErros]);
@@ -108,8 +116,8 @@ function LoginApp() {
           </div>
           <p className="errorMsg">{formErros.password}</p>
           <button className="submitButton">ログイン</button>
-          {Object.keys(formErros).length === 0 && isSubmit && (
-            <div className="msgOk">ログインに成功しました</div>
+          {Object.keys(formErros).length == 0 && isSubmit && loginFail && (
+            <div className="msgOk">ログインに失敗しました</div>
           )}
         </div>
       </form>
