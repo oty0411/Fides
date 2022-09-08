@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react"
-
-
+import { useForm } from 'react-hook-form';
+import { Select,MenuItem } from "@material-ui/core";
 
 
 
@@ -32,7 +32,7 @@ const CheckBoxList = () => {
   const [checkedItems, setCheckedItems] = useState({})
 //ひとつでもcheckedになっている場合にのみ送信ボタンを表示させたいので、全体のStateを監視する
   const [isBtnHide, setIsBtnHide] = useState(true)
-
+  const { register, handleSubmit, formState: { errors },} = useForm();
   useEffect(() => {
 //checkedItemsが空では無い場合、送信ボタンを表示させる
     Object.keys(checkedItems).length && setIsBtnHide(false)
@@ -48,40 +48,45 @@ const CheckBoxList = () => {
     },100);
   }, [checkedItems])
 
-  const handleChange = e => {
-//checkedItemsのstateをセット
-    setCheckedItems({
-      ...checkedItems,
-      [e.target.id]: e.target.checked
-    })
-    console.log('checkedItems:', checkedItems)
-  }
+//   const handleChange = e => {
+// //checkedItemsのstateをセット
+//     setCheckedItems({
+//       ...checkedItems,
+//       [e.target.id]: e.target.checked
+//     })
+//     console.log('checkedItems:', checkedItems)
+//   }
 
-  const dataSendBtn = e => {
-//既定のイベントをキャンセルさせる
-    e.preventDefault()
-//送信ボタンを押したタイミングで、checkedItemsオブジェクトのvalueがtrueのkeyのみを配列にしてconsoleに表示させる
-    const dataPushArray = Object.entries(checkedItems).reduce((pre,[key, value])=>{
-      value && pre.push(key)
-      return pre
-    },[])
-    console.log("dataPushArray:", dataPushArray)
-  }
+//   const dataSendBtn = e => {
+// //既定のイベントをキャンセルさせる
+//     e.preventDefault()
+// //送信ボタンを押したタイミングで、checkedItemsオブジェクトのvalueがtrueのkeyのみを配列にしてconsoleに表示させる
+//     const dataPushArray = Object.entries(checkedItems).reduce((pre,[key, value])=>{
+//       value && pre.push(key)
+//       return pre
+//     },[])
+//     console.log("dataPushArray:", dataPushArray)
+//   }
 
+const submit = (data) => {
+    console.log(data);
+  };
+  
 
 
   return (
     <>
-      <div>
-        <form onSubmit={handleSubmit(submit)}>
+      
+      <form onSubmit={handleSubmit(submit)}>
+        <div>
           <label htmlFor="honban" style={{ marginRight: "30px" }}>
             本番
           </label>
-          <Select {...register("honban")} name="honban" id="honban">
+          <Select　{...register("honban")} name="honban" id="honban">
             <MenuItem value={0}>できる</MenuItem>
             <MenuItem value={1}>できない</MenuItem>
-            <MenuItem value={2}>要相談</MenuItem>
-          </Select>
+          <MenuItem value={2}>要相談</MenuItem>
+          </Select>  
        </div>
 
         <div>
@@ -127,10 +132,10 @@ const CheckBoxList = () => {
             <MenuItem value={2}>要相談</MenuItem>
           </Select>
         </div>
-        <Button type="submit" variant="outlined">
+        <button type="submit" variant="outlined">
           作成
-        </Button>
-</form>
+      </button>
+      </form>
 </>
   )
 }

@@ -8,6 +8,7 @@ import { useForm } from 'react-hook-form';
 import * as UserTypes from '../../types/userTypes';
 import * as Api from '../../utils/api'
 import Copyright from '../../src/Copyright';
+import CheckBoxList from '../../src/CheckBoxList';
 
 
 
@@ -289,9 +290,10 @@ export default function Me() {
           {errors.BloodType && <div>血液型を入力してください</div>}   
         </div>  
           <button>プロフィール作成</button>
+          {/* <CheckBoxList/> */}
    
         </form>
-        
+        <CheckBoxList/>
       </div>
       <Copyright/>
     </>
