@@ -36,7 +36,7 @@ const MakerResponsiveAppBar = () => {
   };
 
   return (
-    <AppBar variant="contained" color="secondary"　position="static">
+    <AppBar variant="contained" color="primary"　position="static">
       <Container maxWidth="xl">
         <Toolbar disableGutters>
           <Typography
@@ -50,7 +50,7 @@ const MakerResponsiveAppBar = () => {
               fontFamily: 'monospace',
               fontWeight: 700,
               letterSpacing: '.3rem',
-              color: 'secondary',
+              color: 'Black',
               textDecoration: 'none',
             }}
           >
