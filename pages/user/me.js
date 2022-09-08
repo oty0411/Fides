@@ -4,12 +4,16 @@ import FormControl from '@mui/material/FormControl';
 import InputLabel from '@mui/material/InputLabel';
 import OutlinedInput from '@mui/material/OutlinedInput';
 import ResponsiveAppBar from '../../src/ResponsiveAppBar';
-import { useForm } from 'react-hook-form';
 import * as UserTypes from '../../types/userTypes';
 import * as Api from '../../utils/api'
 import Copyright from '../../src/Copyright';
 import CheckBoxList from '../../src/CheckBoxList';
 import getConfig from "next/config"
+import  { useState, useEffect } from "react"
+import { useForm } from 'react-hook-form';
+import { Select,MenuItem } from "@material-ui/core";
+
+
 
 export default function Me() {
   const handleUploadClick = async (e) => {
@@ -22,11 +26,11 @@ export default function Me() {
   const { register, handleSubmit, formState: { errors },} = useForm();
   const submit = (data) => {
     console.log(data);
-    // POSTするプロフィールデータの作成
-    const postData = createPostData(new UserTypes.ActorData(), data);
+  
     // プロフィール更新
-    updateProfile(postData);
+    updateProfile(data);
   };
+  
   
   // 更新データ作成
 	const createPostData = (originalData, formData) => {
@@ -72,25 +76,100 @@ export default function Me() {
 		data.Profile.BreastTopSize = Number(formData.BreastTopSize);
 		data.Profile.BreastUnderSize = Number(formData.BreastUnderSize);
 		data.Profile.WaistSize = Number(formData.WaistSize);
-		data.Profile.HipSize = Number(formData.HipSize);
-
+    data.Profile.HipSize = Number(formData.HipSize);
+    
+    data.PlayCondition1.Honban = Number(formData.honban);
+    data.PlayCondition1.Gomunashi = Number(formData.gomunashi);
+		data.PlayCondition1.Nakadashi = Number(formData.nakadashi);
+		data.PlayCondition1.Ferachio = Number(formData.ferachio);
+    data.PlayCondition1.Iramachio = Number(formData.iramachio);
+    
 		console.log(data);
 		return data;
   }
   
   // プロフィール更新
-  const updateProfile = (postData) => {
+  const updateProfile = (formData) => {
     const { serverRuntimeConfig, publicRuntimeConfig } = getConfig();
     const apiContext = {
       apiRootUrl: publicRuntimeConfig.NEXT_PUBLIC_SELF_API_URL,
-		}
-    //console.log(postData);
-    // TODO:ユーザIDを取得する必要がある
-		Api.UpdateActorProfile(apiContext, { userId: 1, userData: postData })
-			.then(updateResult => {
-				console.log("UpdateActorProfile is done!");
-				console.log(updateResult);
+    }
+    const id = 1;
+    	Api.GetActorProfile(apiContext, id)
+			.then(getResult => {
+				console.log("GetActorProfile is done!");
+				//console.log(getResult);
+				const postData = createPostData(getResult.userData,formData);
+				Api.UpdateActorProfile(apiContext, { userId: id, userData: postData })
+					.then(updateResult => {
+						console.log("UpdateActorProfile is done!");
+						console.log(updateResult);
+					});
 			});
+  }
+  //checkboxのvalueリスト
+const checkLists = [
+  "できる",
+  "できない",
+  "要相談",
+]
+
+//checkboxコンポーネント
+const CheckBox = ({id, value, checked, onChange}) => {
+  return (
+    <input
+      id={id}
+      type="checkbox"
+      name="inputNames"
+      checked={checked}
+      onChange={onChange}
+      value={value}
+    />
+  )
+}
+
+  const CheckBoxList = () => {
+
+    //checkedItemsは初期値を空のオブジェクトにする
+    const [checkedItems, setCheckedItems] = useState({})
+    //ひとつでもcheckedになっている場合にのみ送信ボタンを表示させたいので、全体のStateを監視する
+    const [isBtnHide, setIsBtnHide] = useState(true)
+    const { register, handleSubmit, formState: { errors }, } = useForm();
+    useEffect(() => {
+      //checkedItemsが空では無い場合、送信ボタンを表示させる
+      Object.keys(checkedItems).length && setIsBtnHide(false)
+      //すべてのcheckedItemの値がfalseの場合に送信ボタンを表示させる
+      setTimeout(() => {
+        if (
+          Object.values(checkedItems).every(checkedItem => {
+            return checkedItem === false
+          })
+        ) {
+          setIsBtnHide(true)
+        }
+      }, 100);
+    }, [checkedItems])
+
+    //   const handleChange = e => {
+    // //checkedItemsのstateをセット
+    //     setCheckedItems({
+    //       ...checkedItems,
+    //       [e.target.id]: e.target.checked
+    //     })
+    //     console.log('checkedItems:', checkedItems)
+    //   }
+
+    //   const dataSendBtn = e => {
+    // //既定のイベントをキャンセルさせる
+    //     e.preventDefault()
+    // //送信ボタンを押したタイミングで、checkedItemsオブジェクトのvalueがtrueのkeyのみを配列にしてconsoleに表示させる
+    //     const dataPushArray = Object.entries(checkedItems).reduce((pre,[key, value])=>{
+    //       value && pre.push(key)
+    //       return pre
+    //     },[])
+    //     console.log("dataPushArray:", dataPushArray)
+    //   }
+
   }
   
   return (
@@ -289,11 +368,67 @@ export default function Me() {
 				</select>
           {errors.BloodType && <div>血液型を入力してください</div>}   
         </div>  
-          <button>プロフィール作成</button>
           {/* <CheckBoxList/> */}
-   
-        </form>
-        <CheckBoxList/>
+        {/* </form>
+     <form onSubmit={handleSubmit(submit)}> */}
+        <div>
+          <label htmlFor="honban" style={{ marginRight: "30px" }}>
+            本番
+          </label>
+          <Select　{...register("honban")} name="honban" id="honban">
+            <MenuItem value={1}>できる</MenuItem>
+            <MenuItem value={0}>できない</MenuItem>
+            <MenuItem value={2}>要相談</MenuItem>
+          </Select>  
+      </div>
+
+        <div>
+          <label htmlFor="gomunashi" style={{ marginRight: "30px" }}>
+            ゴムなし
+          </label>
+          <Select {...register("gomunashi")} name="gomunashi" id="gomunashi">
+            <MenuItem value={1}>できる</MenuItem>
+            <MenuItem value={0}>できない</MenuItem>
+            <MenuItem value={2}>要相談</MenuItem>
+          </Select>
+        </div>
+
+        <div>
+          <label htmlFor="nakadashi" style={{ marginRight: "30px" }}>
+            中出し
+          </label>
+          <Select {...register("nakadashi")} name="nakadashi" id="nakadashi">
+            <MenuItem value={1}>できる</MenuItem>
+            <MenuItem value={0}>できない</MenuItem>
+            <MenuItem value={2}>要相談</MenuItem>
+          </Select>
+        </div>
+
+        <div>
+          <label htmlFor="ferachio" style={{ marginRight: "30px" }}>
+            フェラチオ
+          </label>
+          <Select {...register("ferachio")} name="ferachio" id="ferachio">
+            <MenuItem value={1}>できる</MenuItem>
+            <MenuItem value={0}>できない</MenuItem>
+            <MenuItem value={2}>要相談</MenuItem>
+          </Select>
+        </div>
+
+        <div>
+          <label htmlFor="iramachio" style={{ marginRight: "30px" }}>
+            イマラチオ
+          </label>
+          <Select {...register("iramachio")} name="iramachio" id="iramachio">
+            <MenuItem value={1}>できる</MenuItem>
+            <MenuItem value={0}>できない</MenuItem>
+            <MenuItem value={2}>要相談</MenuItem>
+          </Select>
+        </div>
+        <button type="submit" variant="outlined">
+          作成
+      </button>
+      </form>
       </div>
       <Copyright/>
     </>
