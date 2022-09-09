@@ -380,7 +380,7 @@ const CheckBox = ({id, value, checked, onChange}) => {
             <MenuItem value={0}>できない</MenuItem>
             <MenuItem value={2}>要相談</MenuItem>
           </Select>  
-      </div>
+        </div>
 
         <div>
           <label htmlFor="gomunashi" style={{ marginRight: "30px" }}>
