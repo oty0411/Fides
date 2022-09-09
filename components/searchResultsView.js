@@ -20,16 +20,22 @@ export default function SearchResultsView(props) {
 					//<li key={item.User.Id}>{item.Profile.ActressName}</li>
 					<li key={item.User.Id}>
 						{item.Profile.ActressName}<br></br>
-						<img src={imageUrls[++imageNumber % 10]}></img>
-						<ul>
-							<li>身長:{ item.Profile.Height }</li>
-							<li>体重:{item.Profile.Weight}</li>
-							<li>バストサイズ:{UserTypes.BreastSizeTypeString[String(item.Profile.BreastSize)]}</li>
-							<li>ウェストサイズ:{item.Profile.WaistSize}</li>
-							<li>ヒップサイズ:{ item.Profile.HipSize }</li>
-							<li>服サイズ:{ item.Profile.ClothesSize }</li>
-							<li>靴サイズ:{ item.Profile.ShoesSize }</li>
-						</ul>
+						<div style={{ display: "flex" }}>
+							<div>
+								<img src={imageUrls[++imageNumber % 10]}></img>
+							</div>
+							<div>
+								<ul>
+								<li>身長:{ item.Profile.Height }</li>
+								<li>体重:{item.Profile.Weight}</li>
+								<li>バストサイズ:{UserTypes.BreastSizeTypeString[String(item.Profile.BreastSize)]}</li>
+								<li>ウェストサイズ:{item.Profile.WaistSize}</li>
+								<li>ヒップサイズ:{ item.Profile.HipSize }</li>
+								<li>服サイズ:{ item.Profile.ClothesSize }</li>
+								<li>靴サイズ:{ item.Profile.ShoesSize }</li>
+								</ul>
+							</div>
+						</div>
 					</li>
 				))}
       </ul>

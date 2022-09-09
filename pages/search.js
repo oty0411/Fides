@@ -1,5 +1,7 @@
 import { useState } from "react";
 import { useForm } from 'react-hook-form'
+import { AppBar, Toolbar } from "@material-ui/core";
+import { Grid } from '@material-ui/core'
 import getConfig from "next/config"
 import { Select, MenuItem } from "@material-ui/core";
 import * as UserTypes from '../types/userTypes';
@@ -85,73 +87,81 @@ export default function App() {
 
   return (
     <>
-      <div>
-        <p>女優検索条件</p>
-        <form onSubmit={handleSubmit(submit)}>
-          <div>
-            <label htmlFor="honban" style={{ marginRight: "30px" }}>
-              本番
-            </label>
-            <Select {...register("honban", { required: true })} name="honban" id="honban">
-              <MenuItem value="">...選択</MenuItem>
-              <MenuItem value={1}>できる</MenuItem>
-              <MenuItem value={0}>できない</MenuItem>
-              <MenuItem value={2}>要相談</MenuItem>
-            </Select>
-            {errors.honban && <div>条件「本番」を指定してください</div>}    
+      <AppBar position="static" style={{ backgroundColor: "#ffC0cb" }}>
+        <Toolbar>
+          <h1>女優検索</h1>
+        </Toolbar>
+      </AppBar>
+      <Grid container alignItems="center" justify="center">
+        <Grid item xs={8}>
+        <div>
+          <h3>女優検索条件</h3>
+            <form onSubmit={handleSubmit(submit)}>
+              <div>
+                <label htmlFor="honban" style={{ marginRight: "30px" }}>
+                  本番
+                </label>
+                <Select {...register("honban", { required: true })} name="honban" id="honban">
+                  <MenuItem value="">...選択</MenuItem>
+                  <MenuItem value={1}>できる</MenuItem>
+                  <MenuItem value={0}>できない</MenuItem>
+                  <MenuItem value={2}>要相談</MenuItem>
+                </Select>
+                {errors.honban && <div>条件「本番」を指定してください</div>}    
+              </div>
+              <div>
+                <label htmlFor="gomunashi" style={{ marginRight: "30px" }}>
+                  ゴムなし
+                </label>
+                <Select {...register("gomunashi", { required: true })} name="gomunashi" id="gomunashi">
+                  <MenuItem value={1}>できる</MenuItem>
+                  <MenuItem value={0}>できない</MenuItem>
+                  <MenuItem value={2}>要相談</MenuItem>
+                </Select>
+                {errors.gomunashi && <div>条件「ゴムなし」を指定してください</div>} 
+              </div>
+              <div>
+                <label htmlFor="nakadashi" style={{ marginRight: "30px" }}>
+                  中出し
+                </label>
+                <Select {...register("nakadashi", { required: true })} name="nakadashi" id="nakadashi">
+                  <MenuItem value={1}>できる</MenuItem>
+                  <MenuItem value={0}>できない</MenuItem>
+                  <MenuItem value={2}>要相談</MenuItem>
+                </Select>
+                {errors.nakadashi && <div>条件「中出し」を指定してください</div>} 
+              </div>
+              <div>
+                <label htmlFor="ferachio" style={{ marginRight: "30px" }}>
+                  フェラチオ
+                </label>
+                <Select {...register("ferachio", { required: true })} name="ferachio" id="ferachio">
+                  <MenuItem value={1}>できる</MenuItem>
+                  <MenuItem value={0}>できない</MenuItem>
+                  <MenuItem value={2}>要相談</MenuItem>
+                </Select>
+                {errors.ferachio && <div>条件「フェラチオ」を指定してください</div>} 
+              </div>
+              <div>
+                <label htmlFor="iramachio" style={{ marginRight: "30px" }}>
+                  イマラチオ
+                </label>
+                <Select {...register("iramachio", { required: true })} name="iramachio" id="iramachio">
+                  <MenuItem value={1}>できる</MenuItem>
+                  <MenuItem value={0}>できない</MenuItem>
+                  <MenuItem value={2}>要相談</MenuItem>
+                </Select>
+                {errors.iramachio && <div>条件「イラマチオ」を指定してください</div>} 
+              </div>
+              <button type="submit" variant="outlined">検索</button>
+            </form>
           </div>
-          <div>
-            <label htmlFor="gomunashi" style={{ marginRight: "30px" }}>
-              ゴムなし
-            </label>
-            <Select {...register("gomunashi", { required: true })} name="gomunashi" id="gomunashi">
-              <MenuItem value={1}>できる</MenuItem>
-              <MenuItem value={0}>できない</MenuItem>
-              <MenuItem value={2}>要相談</MenuItem>
-            </Select>
-            {errors.gomunashi && <div>条件「ゴムなし」を指定してください</div>} 
+        <div>
+          <h3>検索結果</h3>
+          <SearchResultsView message={message} searchResult={ searchResult } />
           </div>
-          <div>
-            <label htmlFor="nakadashi" style={{ marginRight: "30px" }}>
-              中出し
-            </label>
-            <Select {...register("nakadashi", { required: true })} name="nakadashi" id="nakadashi">
-              <MenuItem value={1}>できる</MenuItem>
-              <MenuItem value={0}>できない</MenuItem>
-              <MenuItem value={2}>要相談</MenuItem>
-            </Select>
-            {errors.nakadashi && <div>条件「中出し」を指定してください</div>} 
-          </div>
-          <div>
-            <label htmlFor="ferachio" style={{ marginRight: "30px" }}>
-              フェラチオ
-            </label>
-            <Select {...register("ferachio", { required: true })} name="ferachio" id="ferachio">
-              <MenuItem value={1}>できる</MenuItem>
-              <MenuItem value={0}>できない</MenuItem>
-              <MenuItem value={2}>要相談</MenuItem>
-            </Select>
-            {errors.ferachio && <div>条件「フェラチオ」を指定してください</div>} 
-          </div>
-          <div>
-            <label htmlFor="iramachio" style={{ marginRight: "30px" }}>
-              イマラチオ
-            </label>
-            <Select {...register("iramachio", { required: true })} name="iramachio" id="iramachio">
-              <MenuItem value={1}>できる</MenuItem>
-              <MenuItem value={0}>できない</MenuItem>
-              <MenuItem value={2}>要相談</MenuItem>
-            </Select>
-            {errors.iramachio && <div>条件「イラマチオ」を指定してください</div>} 
-          </div>
-          <button type="submit" variant="outlined">
-            検索
-          </button>
-        </form>
-      </div>
-      <div>
-        <SearchResultsView message={message} searchResult={ searchResult } />
-      </div>
+        </Grid>
+      </Grid>
     </>
   )
 }
