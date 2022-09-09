@@ -61,6 +61,11 @@ export class DBAccessor{
 				}
 			},
 		})
+			.catch(error => {
+				result = DBAccessCode.Error;
+				console.log(error);
+			})
+		
 		//console.log(user);
 		//console.log(matchUser);
 
@@ -103,6 +108,7 @@ export class DBAccessor{
 				}
 			})
 			.catch(error => {
+				result = DBAccessCode.Error;
 				console.log(error);
 				console.log("User with the specified number does not exist.");
 				userFind = false;
@@ -170,6 +176,7 @@ export class DBAccessor{
 				}
 			})
 			.catch(error => {
+				result = DBAccessCode.Error;
 				console.log(error);
 				console.log("An error occurred while retrieving actress list from DB.");
 			})
@@ -204,6 +211,7 @@ export class DBAccessor{
 				}
 			})
 			.catch(error => {
+				result = DBAccessCode.Error;
 				console.log(error);
 				console.log("An error occurred while searching the target actress from the DB.");
 			})
@@ -366,7 +374,7 @@ export class DBAccessor{
 		/*Promise<(User & { profile: ActorProfile | null; playCondition1: PlayCondition1 | null; }) | null>*/{
 		const searchCondition = DBAccessor.createSearchCondition(condition);
 		const matchUsers = await DBAccessor.prisma.user.findMany({
-			where: searchCondition,
+			where: { AND: searchCondition },
 			include: {
 				profile: true,
 				playCondition1: true,
@@ -380,26 +388,48 @@ export class DBAccessor{
 
 	// create search condition object(Private method)
 	static createSearchCondition = (condition) => {
-		let obj = {};
-		// obj.type = UserTypes.UserType.Actor;
+		let array = new Array();
 		condition.map((data) => {
+			let obj = {};
 			if (data.type == UserTypes.ActorSearchType.Match) {
-				obj[DBTypes.ActorDataItemName[data.id]] = {
-					contains: data.value,
-				};
+				if (DBTypes.ActorDataItemParentName[data.id] != "") {
+					obj[DBTypes.ActorDataItemParentName[data.id]] = {};
+					obj[DBTypes.ActorDataItemParentName[data.id]][DBTypes.ActorDataItemName[data.id]] = {
+						contains: data.value,
+					};
+				} else {
+					obj[DBTypes.ActorDataItemName[data.id]] = {
+						contains: data.value,
+					};
+				}	
 			}
 			else if (data.type == UserTypes.ActorSearchType.Range) {
-				obj[DBTypes.ActorDataItemName[data.id]] = {
-					gte: data.option.lower,
-					lte: data.option.upper,
+				if (DBTypes.ActorDataItemParentName[data.id] != "") {
+					obj[DBTypes.ActorDataItemParentName[data.id]] = {};
+					obj[DBTypes.ActorDataItemParentName[data.id]][DBTypes.ActorDataItemName[data.id]] = {
+						gte: data.option.lower,
+						lte: data.option.upper,
+					}
+				} else {
+					obj[DBTypes.ActorDataItemName[data.id]] = {
+						gte: data.option.lower,
+						lte: data.option.upper,
+					}
 				}
 			}
 			else {
-				obj[DBTypes.ActorDataItemName[data.id]] = data.value;
+				if (DBTypes.ActorDataItemParentName[data.id] != "") {
+					obj[DBTypes.ActorDataItemParentName[data.id]] = {};
+					obj[DBTypes.ActorDataItemParentName[data.id]][DBTypes.ActorDataItemName[data.id]] = data.value;
+				} else {
+					obj[DBTypes.ActorDataItemName[data.id]] = data.value;
+				}				
 			}
+			array.push(obj);
 		});
-		console.log(obj);
-		return obj;
+		// console.log("condition");
+		// console.log(array);
+		return array;
 	}
 	// #endregion Private methods
 

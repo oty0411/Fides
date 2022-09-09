@@ -28,3 +28,34 @@ export const ActorDataItemName = {
   Ferachio:           "ferachio",
   Iramachio:          "iramachio",
 }
+
+/**
+ * 女優データアイテムの親アイテム文字列
+ */
+export const ActorDataItemParentName = {
+  Id:                 "",
+  Name:               "",
+  Password:           "",
+  Open:               "",
+  Type:               "",
+  IsAdmin:            "",
+  IsDeleted:          "",
+  ActressName:        "profile",
+  RealName:           "profile",
+  Birthday:           "profile",
+  BloodType:          "profile",
+  Height:             "profile",
+  Weight:             "profile",
+  ClothesSize:        "profile",
+  ShoesSize:          "profile",
+  BreastSize:         "profile",
+  BreastTopSize:      "profile",
+  BreastUnderSize:    "profile",
+  WaistSize:          "profile",
+  HipSize:            "profile",
+  Honban:             "playCondition1",
+  Gomunashi:          "playCondition1",
+  Nakadashi:          "playCondition1",
+  Ferachio:           "playCondition1",
+  Iramachio:          "playCondition1",
+}

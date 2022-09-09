@@ -372,58 +372,60 @@ const CheckBox = ({id, value, checked, onChange}) => {
         {/* </form>
      <form onSubmit={handleSubmit(submit)}> */}
         <div>
-          <label htmlFor="honban" style={{ marginRight: "30px" }}>
-            本番
-          </label>
-          <Select　{...register("honban")} name="honban" id="honban">
-            <MenuItem value={1}>できる</MenuItem>
-            <MenuItem value={0}>できない</MenuItem>
-            <MenuItem value={2}>要相談</MenuItem>
-          </Select>  
+            <label htmlFor="honban" style={{ marginRight: "30px" }}>
+              本番
+            </label>
+            <Select {...register("honban", { required: true })} name="honban" id="honban">
+              <MenuItem value="">...選択</MenuItem>
+              <MenuItem value={1}>できる</MenuItem>
+              <MenuItem value={0}>できない</MenuItem>
+              <MenuItem value={2}>要相談</MenuItem>
+            </Select>
+            {errors.honban && <div>条件「本番」を指定してください</div>}    
         </div>
-
         <div>
           <label htmlFor="gomunashi" style={{ marginRight: "30px" }}>
             ゴムなし
           </label>
-          <Select {...register("gomunashi")} name="gomunashi" id="gomunashi">
+          <Select {...register("gomunashi", { required: true })} name="gomunashi" id="gomunashi">
             <MenuItem value={1}>できる</MenuItem>
             <MenuItem value={0}>できない</MenuItem>
             <MenuItem value={2}>要相談</MenuItem>
           </Select>
+          {errors.gomunashi && <div>条件「ゴムなし」を指定してください</div>} 
         </div>
-
         <div>
           <label htmlFor="nakadashi" style={{ marginRight: "30px" }}>
             中出し
           </label>
-          <Select {...register("nakadashi")} name="nakadashi" id="nakadashi">
+          <Select {...register("nakadashi", { required: true })} name="nakadashi" id="nakadashi">
             <MenuItem value={1}>できる</MenuItem>
             <MenuItem value={0}>できない</MenuItem>
             <MenuItem value={2}>要相談</MenuItem>
           </Select>
+          {errors.nakadashi && <div>条件「中出し」を指定してください</div>} 
         </div>
-
         <div>
           <label htmlFor="ferachio" style={{ marginRight: "30px" }}>
             フェラチオ
           </label>
-          <Select {...register("ferachio")} name="ferachio" id="ferachio">
+          <Select {...register("ferachio", { required: true })} name="ferachio" id="ferachio">
             <MenuItem value={1}>できる</MenuItem>
             <MenuItem value={0}>できない</MenuItem>
             <MenuItem value={2}>要相談</MenuItem>
           </Select>
+          {errors.ferachio && <div>条件「フェラチオ」を指定してください</div>} 
         </div>
-
         <div>
           <label htmlFor="iramachio" style={{ marginRight: "30px" }}>
             イマラチオ
           </label>
-          <Select {...register("iramachio")} name="iramachio" id="iramachio">
+          <Select {...register("iramachio", { required: true })} name="iramachio" id="iramachio">
             <MenuItem value={1}>できる</MenuItem>
             <MenuItem value={0}>できない</MenuItem>
             <MenuItem value={2}>要相談</MenuItem>
           </Select>
+          {errors.iramachio && <div>条件「イラマチオ」を指定してください</div>} 
         </div>
         <button type="submit" variant="outlined">
           作成
