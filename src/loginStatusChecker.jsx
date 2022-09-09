@@ -6,7 +6,6 @@ function LoginStatusChecker() {
 	const router = useRouter();
 
 	useEffect(() => {
-		console.log("LoadLoadLoadLoadLoadLoadLoadLoad");
 		if (!AuthUser.GetAuthenticated()) {
 			router.replace("/");
 		}

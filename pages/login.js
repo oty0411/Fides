@@ -1,8 +1,7 @@
 import { useEffect, useState } from "react";
 import * as UserTypes from "../types/userTypes"
-import * as Api from "../utils/api"
-import getConfig from "next/config"
 import { useRouter } from "next/router";
+import {AuthUser} from "../utils/auth/authUser"
 
 function LoginApp() {
   const initialValues = { username: "", password: "" };
@@ -24,27 +23,15 @@ function LoginApp() {
     setFormErrors(validate(formValues));
     setIsSubmit(true);
     
-    // フォーム入力データをAPI引数の形へ成型
-    const data = { Name: formValues.username, Password: formValues.password };
+    setloginFail(false);
+
     // ログイン
-    login(data);
-  };
-
-  // ログイン
-  const login = (loginInfo) => {
-
-    const { serverRuntimeConfig, publicRuntimeConfig } = getConfig();
-    const apiContext = {
-      apiRootUrl: publicRuntimeConfig.NEXT_PUBLIC_SELF_API_URL,
-		}
-    //console.log(loginInfo);
-		Api.Login(apiContext, loginInfo)
-			.then(result => {
-        console.log(result);
-        if (result.result.Code == UserTypes.AppErrorCode.Success) {
+    AuthUser.Login(formValues.username, formValues.password)
+      .then(loginResult => {
+        console.log(loginResult);
+        if (loginResult.authenticated) {
           // 認証PASS
-          console.log("========Auth Pass=======");
-          if (result.userData.Type === UserTypes.UserType.Actor) {
+          if (loginResult.user.Type === UserTypes.UserType.Actor) {
             router.replace("/user/me");
           } else {
             router.replace("/search");
@@ -52,10 +39,9 @@ function LoginApp() {
         } else {
           // 認証NG
           setloginFail(true);
-          console.log("========Auth Fail=======");
         }
-			})
-  }
+      })
+  };
 
   useEffect(() => {
     //console.log(formErros);

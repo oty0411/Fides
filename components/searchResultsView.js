@@ -31,7 +31,7 @@ export default function SearchResultsView(props) {
 								<li>バストサイズ:{UserTypes.BreastSizeTypeString[String(item.Profile.BreastSize)]}</li>
 								<li>ウェストサイズ:{item.Profile.WaistSize}</li>
 								<li>ヒップサイズ:{ item.Profile.HipSize }</li>
-								<li>服サイズ:{ item.Profile.ClothesSize }</li>
+								<li>服サイズ:{ UserTypes.ClothesSizeTypeString[String(item.Profile.ClothesSize)]}</li>
 								<li>靴サイズ:{ item.Profile.ShoesSize }</li>
 								</ul>
 							</div>

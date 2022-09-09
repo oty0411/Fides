@@ -12,7 +12,7 @@ import getConfig from "next/config"
 import  { useState, useEffect } from "react"
 import { useForm } from 'react-hook-form';
 import { Select,MenuItem } from "@material-ui/core";
-
+import {AuthUser} from "../../utils/auth/authUser"
 
 
 export default function Me() {
@@ -26,7 +26,6 @@ export default function Me() {
   const { register, handleSubmit, formState: { errors },} = useForm();
   const submit = (data) => {
     console.log(data);
-  
     // プロフィール更新
     updateProfile(data);
   };
@@ -94,18 +93,18 @@ export default function Me() {
     const apiContext = {
       apiRootUrl: publicRuntimeConfig.NEXT_PUBLIC_SELF_API_URL,
     }
-    const id = 1;
-    	Api.GetActorProfile(apiContext, id)
-			.then(getResult => {
-				console.log("GetActorProfile is done!");
-				//console.log(getResult);
-				const postData = createPostData(getResult.userData,formData);
-				Api.UpdateActorProfile(apiContext, { userId: id, userData: postData })
-					.then(updateResult => {
-						console.log("UpdateActorProfile is done!");
-						console.log(updateResult);
-					});
-			});
+    const userInfo = AuthUser.GetAuthenticatedUser();
+    Api.GetActorProfile(apiContext, userInfo.Id)
+      .then(getResult => {
+        console.log("GetActorProfile is done!");
+        //console.log(getResult);
+        const postData = createPostData(getResult.userData, formData);
+        Api.UpdateActorProfile(apiContext, { userId: userInfo.Id, userData: postData })
+          .then(updateResult => {
+            console.log("UpdateActorProfile is done!");
+            console.log(updateResult);
+          });
+      });
   }
   //checkboxのvalueリスト
 const checkLists = [

@@ -146,6 +146,25 @@ export const ClothesSizeType = {
   L10: 12,
 }
 /**
+ * 洋服サイズ(文字列)
+ */
+export const ClothesSizeTypeString = {
+  "0": "SS",
+  "1": "S",
+  "2": "M",
+  "3": "L",
+  "4": "2L",
+  "5": "3L",
+  "6": "4L",
+  "7": "5L",
+  "8": "6L",
+  "9": "7L",
+  "10": "8L",
+  "11": "9L",
+  "12": "10L",
+}
+
+/**
  * バストサイズ
  */
 export const BreastSizeType = {
@@ -165,7 +184,7 @@ export const BreastSizeType = {
   N: 13,
 }
 /**
- * バストサイズ
+ * バストサイズ(文字列)
  */
 export const BreastSizeTypeString = {
   "0": "A",
