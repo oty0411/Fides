@@ -64,7 +64,7 @@ export default function App() {
 		data.PlayCondition1.Ferachio = UserTypes.PlayConditionChoice.OK;
 		data.PlayCondition1.Iramachio = UserTypes.PlayConditionChoice.NEGOTIABLE;
 
-		//console.log(data);
+		console.log(data);
 		return data;
 	}
 
