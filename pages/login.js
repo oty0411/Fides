@@ -84,7 +84,7 @@ function LoginApp() {
       
       <form onSubmit={handleSubmit}>
         <h1 color="red">
-        {/* <DiamondIcon style={{  width: 56, height: 56 ,display:'flex', md: 'none', }}/> */}
+        <DiamondIcon style={{  width: 56, height: 56 ,display:'flex', md: 'none', }}/>
         Login
         </h1>
    
