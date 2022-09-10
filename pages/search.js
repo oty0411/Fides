@@ -1,12 +1,20 @@
 import { useState } from "react";
 import { useForm } from 'react-hook-form'
-import { AppBar, Toolbar } from "@material-ui/core";
-import { Grid } from '@material-ui/core'
 import getConfig from "next/config"
 import { Select, MenuItem } from "@material-ui/core";
 import * as UserTypes from '../types/userTypes';
 import * as Api from '../utils/api'
 import SearchResultsView from '../components/searchResultsView';
+import MakerResponsiveAppBar from "../src/MakerResponsiveAppBar";
+import Grid from '@mui/material/Grid';
+import Box from '@material-ui/core/Box';
+
+const defaultProps = {
+  bgcolor: 'background.paper',
+  m: 1,
+  style: { width: '5rem', height: '5rem' },
+  borderColor: 'text.primary',
+};
 /**
  * 女優検索ページ
  * @returns 
@@ -84,16 +92,14 @@ export default function App() {
         }
       })
   };
+  
 
   return (
     <>
-      <AppBar position="static" style={{ backgroundColor: "#ffC0cb" }}>
-        <Toolbar>
-          <h1>女優検索</h1>
-        </Toolbar>
-      </AppBar>
-      <Grid container alignItems="center" justify="center">
-        <Grid item xs={8}>
+      <MakerResponsiveAppBar />
+       <Box sx={{ margin: "40px", }}>
+      <Grid container spacing={2}>
+        <Grid item xs={6} md={4}>
         <div>
           <h3>女優検索条件</h3>
             <form onSubmit={handleSubmit(submit)}>
@@ -156,12 +162,16 @@ export default function App() {
               <button type="submit" variant="outlined">検索</button>
             </form>
           </div>
-        <div>
+        </Grid>
+          <Grid item xs={6} md={8}>
+           
+            <div>
           <h3>検索結果</h3>
           <SearchResultsView message={message} searchResult={ searchResult } />
           </div>
-        </Grid>
       </Grid>
+        </Grid>
+        </Box>
     </>
   )
 }

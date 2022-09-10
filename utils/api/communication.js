@@ -99,6 +99,7 @@ export const Login = async (
   console.log("API Start:[/auth/login]");
   const apiResult = await ApiRequestFetcher(address, ApiRequestType.POST, params);
   console.log("API End:[/auth/login]");
+  console.log(apiResult)
   return {
     result: ErrorCodeTranslator.ToAppResult(apiResult.result),
     userData: apiResult.userData

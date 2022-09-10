@@ -8,6 +8,7 @@ import theme from '../src/theme';
 import createEmotionCache from '../src/createEmotionCache';
 import { useEffect, useState } from "react";
 import { SessionProvider } from 'next-auth/react';
+import "../styles/globals.css";
 
 // function MyApp({ Component, pageProps: { session, ...pageProps } }) {
 //   return (

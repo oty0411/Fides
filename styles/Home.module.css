@@ -34,3 +34,16 @@
   margin: 0 auto;
   grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
 }
+body {
+  background-color: #9eb9cf;
+  background: rgb(105, 88, 177);
+  background: linear-gradient(117deg,
+      rgba(105, 88, 177, 1) 5%,
+      rgba(87, 30, 97, 0.9556197478991597) 100%);
+  overflow-y: hidden;
+}
+
+h1 {
+  text-align: center;
+  margin: 13px 0;
+} 

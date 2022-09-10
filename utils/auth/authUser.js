@@ -57,7 +57,7 @@ export class AuthUser {
     console.log(loginInfo);
 		await Api.Login(AuthUser._apiContext, loginInfo)
 			.then(result => {
-        //console.log(result);
+        // console.log(result);
         if (result.result.Code == UserTypes.AppErrorCode.Success) {
           // 認証PASS
 					console.log("========Auth Pass=======");

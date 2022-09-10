@@ -2,6 +2,10 @@ import { useEffect, useState } from "react";
 import * as UserTypes from "../types/userTypes"
 import { useRouter } from "next/router";
 import {AuthUser} from "../utils/auth/authUser"
+import DiamondIcon from "@mui/icons-material/Diamond";
+import * as React from 'react';
+import { red } from "@mui/material/colors";
+
 
 function LoginApp() {
   const initialValues = { username: "", password: "" };
@@ -73,11 +77,20 @@ function LoginApp() {
   };
 
   return (
-    <div className="formContainer">
+
+    <div className="formContainer"
+      align="center"
+      display="flex">
+      
       <form onSubmit={handleSubmit}>
-        <h1>ログイン</h1>
+        <h1 color="red">
+        {/* <DiamondIcon style={{  width: 56, height: 56 ,display:'flex', md: 'none', }}/> */}
+        Login
+        </h1>
+   
         <hr />
-        <div className="uiForm">
+        <div className="uiForm"
+        height="100px">
           <div className="formField">
             <label>ユーザー名</label>
             <input
@@ -100,14 +113,15 @@ function LoginApp() {
               onChange={(e) => handleChange(e)}
             />
           </div>
+         
           <p className="errorMsg">{formErros.password}</p>
           <button className="submitButton">ログイン</button>
           {Object.keys(formErros).length == 0 && isSubmit && loginFail && (
-            <div className="msgOk">ログインに失敗しました</div>
+            <div className="msgOk"><p>ログインに失敗しました</p></div>
           )}
         </div>
       </form>
-    </div>
+      </div>
   );
 }
 

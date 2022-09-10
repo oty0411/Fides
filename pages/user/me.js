@@ -1,18 +1,15 @@
 import * as React from 'react';
-import Box from '@mui/material/Box';
-import FormControl from '@mui/material/FormControl';
-import InputLabel from '@mui/material/InputLabel';
-import OutlinedInput from '@mui/material/OutlinedInput';
 import ResponsiveAppBar from '../../src/ResponsiveAppBar';
 import * as UserTypes from '../../types/userTypes';
 import * as Api from '../../utils/api'
 import Copyright from '../../src/Copyright';
-import CheckBoxList from '../../src/CheckBoxList';
 import getConfig from "next/config"
 import  { useState, useEffect } from "react"
 import { useForm } from 'react-hook-form';
-import { Select,MenuItem } from "@material-ui/core";
+import { Select,MenuItem, Box } from "@material-ui/core";
 import {AuthUser} from "../../utils/auth/authUser"
+
+
 
 
 export default function Me() {
@@ -167,20 +164,16 @@ const CheckBox = ({id, value, checked, onChange}) => {
     //       return pre
     //     },[])
     //     console.log("dataPushArray:", dataPushArray)
-    //   }
 
   }
   
   return (
     <>
+  
       <ResponsiveAppBar />
-        <div
-          style={{
-            padding: 30
-          }}
-          align="center"
-          display="flex">
-          <label htmlFor="upload-button" style={{ border: "1px solid #222", borderRadius: 10, padding: 10, cursor: "pointer" }}>
+    
+      <div style={{display:'flex',  justifyContent: 'center' ,margin:10,}}>
+          <label htmlFor="upload-button" style={{ border: "1px solid #222", borderRadius: 10, padding: 10, cursor: "pointer" ,}}>
             <input
               accept="image/*"
               id="upload-button"
@@ -191,9 +184,9 @@ const CheckBox = ({id, value, checked, onChange}) => {
             ファイル選択
         </label>
         </div>
-
+  <Box  style={{ display:'flex', mx: '2px', transform: 'scale(0.8)', justifyContent:'center',}}>
         <div>
-      <h1>プロフィール</h1>
+      <h1>profile</h1>
       <form onSubmit={handleSubmit(submit)}>
         <div style={{marginBottom: "20px"}}>
           <label htmlFor="ActressName">女優名</label>
@@ -228,10 +221,10 @@ const CheckBox = ({id, value, checked, onChange}) => {
             name="Height"
             id="Height"
           />
-          {errors.Height && <div>身長を入力してください</div>}  
+          {errors.Height && <div>身長を入力してください</div>} cm 
         </div>
 
-        <div>
+        <div style={{ marginBottom: "20px" }}>
           <label htmlFor="Weight">体重</label>
           <input
             autoComplete="off"
@@ -240,9 +233,8 @@ const CheckBox = ({id, value, checked, onChange}) => {
             name="Weight"
             id="Weight"
           />
-          {errors.Weight && <div>体重を入力してください</div>}  
+          {errors.Weight && <div>体重を入力してください</div>}kg  
         </div>
-
         <div style={{ marginBottom: "20px" }}>
           <label htmlFor="ClothesSize">服のサイズ</label>
           <select {...register('ClothesSize', { required: true })}>
@@ -261,7 +253,7 @@ const CheckBox = ({id, value, checked, onChange}) => {
             <option value="11">9L</option>
             <option value="12">10L</option>
 				</select>
-          {errors.ClothesSize && <div>服のサイズを入力してください</div>}    
+          {errors.ClothesSize && <div>服のサイズを入力してください</div>}号    
         </div>
 
         <div style={{ marginBottom: "20px" }}>
@@ -273,7 +265,7 @@ const CheckBox = ({id, value, checked, onChange}) => {
             name="ShoesSize"
             id="ShoesSize"
           />
-          {errors.ShoesSize && <div>靴のサイズを入力してください</div>}   
+          {errors.ShoesSize && <div>靴のサイズを入力してください</div>}  cm 
         </div>
 
         <div style={{ marginBottom: "20px" }}>
@@ -295,7 +287,7 @@ const CheckBox = ({id, value, checked, onChange}) => {
             <option value="12">M</option>
             <option value="13">N</option>  
 				</select>
-          {errors.BreastSize && <div>バストサイズを入力してください</div>}   
+          {errors.BreastSize && <div>バストサイズを入力してください</div>} カップ  
         </div>
 
         <div style={{ marginBottom: "20px" }}>
@@ -307,7 +299,7 @@ const CheckBox = ({id, value, checked, onChange}) => {
             name="BreastTopSize"
             id="BreastTopSize"
           />
-          {errors.BreastTopSize && <div>バストトップサイズを入力してください</div>}   
+          {errors.BreastTopSize && <div>バストトップサイズを入力してください</div>} cm  
         </div>
 
         <div style={{ marginBottom: "20px" }}>
@@ -319,7 +311,7 @@ const CheckBox = ({id, value, checked, onChange}) => {
             name="BreastUnderSize"
             id="BreastUnderSize"
           />
-          {errors.BreastUnderSize && <div>バストアンダーサイズを入力してください</div>} 
+          {errors.BreastUnderSize && <div>バストアンダーサイズを入力してください</div>} cm
         </div>
 
         <div style={{ marginBottom: "20px" }}>
@@ -331,7 +323,7 @@ const CheckBox = ({id, value, checked, onChange}) => {
             name="WaistSize"
             id="WaistSize"
           />
-          {errors.WaistSize && <div>ウェストサイズを入力してください</div>}   
+          {errors.WaistSize && <div>ウェストサイズを入力してください</div>}   cm
         </div>
 
         <div style={{ marginBottom: "20px" }}>
@@ -343,7 +335,7 @@ const CheckBox = ({id, value, checked, onChange}) => {
             name="HipSize"
             id="HipSize"
           />
-          {errors.HipSize && <div>ヒップサイズを入力してください</div>}   
+          {errors.HipSize && <div>ヒップサイズを入力してください</div>}cm   
         </div>
 
         {/* <div>
@@ -356,7 +348,8 @@ const CheckBox = ({id, value, checked, onChange}) => {
             id="blood"
           />
         </div> */}
-        <div style={{ marginBottom: "20px" }}>
+            <div style={{
+              marginBottom: "20px"}}>
           <label htmlFor="BloodType">血液型</label>
           <select {...register('BloodType', { required: true })}>
             <option value="">選択...</option>
@@ -365,7 +358,7 @@ const CheckBox = ({id, value, checked, onChange}) => {
             <option value="2">O</option>
             <option value="3">AB</option>    
 				</select>
-          {errors.BloodType && <div>血液型を入力してください</div>}   
+          {errors.BloodType && <div>血液型を入力してください</div>}型   
         </div>  
           {/* <CheckBoxList/> */}
         {/* </form>
@@ -426,11 +419,12 @@ const CheckBox = ({id, value, checked, onChange}) => {
           </Select>
           {errors.iramachio && <div>条件「イラマチオ」を指定してください</div>} 
         </div>
-        <button type="submit" variant="outlined">
+            <button type="submit" variant="outlined"  >
           作成
       </button>
       </form>
       </div>
+     </Box>
       <Copyright/>
     </>
     )
